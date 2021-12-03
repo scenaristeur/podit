@@ -9,10 +9,33 @@
       v-for="r in resources" :key="r.url"
       button
       @click="pathChange(r)">
-      {{r.name}}
-    </b-list-group-item>
-  </b-list-group>
-  <!-- {{resources}} -->
+      <!-- {{r.name}} -->
+      <div class="input-group" style="display:table; width:100%;">
+
+        <!-- <b-button class="unstyled-button" variant="outline-warning">
+        <b-icon-folder-fill></b-icon-folder-fill></b-button> -->
+        {{ r.name }}
+        <!-- <span style="display: table-cell; border:1px solid #ccc; padding: 0 8px; vertical-align: middle;">Cras justo odio</span> -->
+
+        <!-- <span style="display: table-cell; width: 40px;">
+        <button class="btn btn-default" type="button"><span>ᐅ</span> Go!</button>
+      </span> -->
+
+      <span style="display: table-cell; width: 75px;">
+        <!-- <button class="btn btn-default" type="button"><span>ᐅ</span>  Go!</button> -->
+        <!-- class="unstyled-button" -->
+
+        <b-button size="sm" variant="outline-info"  @click.stop="copy(r)" style="float:left">
+          <b-icon-clipboard @click.stop="copy(r)" variant="info" ></b-icon-clipboard>
+        </b-button>
+        <Share :item="r" style="float:left"/>
+      </span>
+
+    </div>
+  </b-list-group-item>
+</b-list-group>
+
+<!-- {{resources}} -->
 </b-container>
 </template>
 
@@ -20,6 +43,9 @@
 export default {
   name: "Navigator",
   props: ['storage'],
+  components: {
+    'Share': () => import('@/components/tools/Share'),
+  },
   data(){
     return{
       resources: [],
@@ -66,6 +92,13 @@ export default {
       console.log(this.storage)
       this.current = null
       this.resources = await this.$getResources(this.storage)
+    },
+    copy(r){
+      console.log(r)
+      navigator.clipboard.writeText(r.url);
+
+/* Alert the copied text */
+alert("Copied the url: " + r.url);
     }
   },
   watch:{

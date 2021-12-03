@@ -10,6 +10,7 @@
     "postgit": "git push && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-inline": "^31.0.0",
     "@ckeditor/ckeditor5-vue2": "^1.0.5",
     "@inrupt/solid-client": "^1.17.0",
     "@inrupt/solid-client-authn-browser": "^1.11.2",
@@ -22,6 +23,7 @@
     "vue": "^2.6.11",
     "vue-offline": "^2.0.8",
     "vue-router": "^3.2.0",
+    "vue-social-sharing": "^3.0.8",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

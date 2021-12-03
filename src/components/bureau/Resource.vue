@@ -1,11 +1,17 @@
 <template>
   <div v-if="resource != null">
     name: {{resource.name}}<br>
-    contenttype: {{resource.file.internal_resourceInfo.contentType}} / rawdata : {{resource.file.internal_resourceInfo.isRawData}}
+    url: <a :href="resource.url" target="_blank">{{resource.url}}</a><br>
+    contenttype: {{resource.file.internal_resourceInfo.contentType}} /
+    rawdata : {{resource.file.internal_resourceInfo.isRawData}}<br>
+    permissions : {{resource.file.internal_resourceInfo.permissions}}
     <hr>
-    Content : {{content}}
-    <hr>
-    {{resource}}
+    <CKWysiwyg v-if="resource.file.internal_resourceInfo.contentType =='text/html'" />
+    <div v-else>
+      Content : {{content}}
+      <hr>
+      {{resource}}
+    </div>
     <!-- <hr>
     {{r}} -->
   </div>
@@ -15,6 +21,10 @@
 <script>
 export default {
   name: "Resource",
+  components: {
+    'CKWysiwyg': () => import('@/components/bureau/CKWysiwyg'),
+    // 'BrowserButton': () => import('@/components/bureau/BrowserButton'),
+  },
   data(){
     return {
       //content: null

@@ -26,7 +26,7 @@ import {
   // createThing,
   // addUrl,
   // buildThing,
-  // overwriteFile,
+  overwriteFile,
   // getStringNoLocale,
   // getThing,
   // getUrlAll,
@@ -69,7 +69,7 @@ const plugin = {
                 //child.value = {type:'folder', url:c, text: text}
               //  child.html= "📁"+text
               }else{
-                r.name = parts[parts.length - 1];
+                r.name = "📄 "+parts[parts.length - 1];
                 r.type = "file"
                 //child.value = {type: "file", url:c, text: child.text}
               }
@@ -94,6 +94,37 @@ const plugin = {
       this.$store.commit('bureau/setResource',r)
       this.$getContent(r.url)
     }
+
+    Vue.prototype.$updateFile = async function(f){
+      console.log(f)
+      // f.url == undefined ? f.url = f.path+f.name : ""
+      // let ext = f.name.split('.')[1]
+       let contentType = f.file.type
+      // switch (ext) {
+      //   case "jsonld":
+      //   contentType = "application/ld+json"
+      //   break;
+      //   case "json":
+      //   contentType = "application/json"
+      //   break;
+      // }
+
+      try{
+        const savedFile = await overwriteFile(
+          f.url,
+          new Blob([f.content], {type: contentType}),
+          { contentType: contentType, fetch: sc.fetch }
+        );
+        console.log(`File saved at ${getSourceUrl(savedFile)}`);
+        //n.url = await getSourceUrl(savedFile)
+        //  store.dispatch('nodes/saveNode', n)
+        return savedFile
+      }catch(e){
+        console.log(e)
+      }
+
+    }
+
     //
     // Vue.prototype.$createRemote = async function(n){
     //   console.log(store.state.solid.pod)
