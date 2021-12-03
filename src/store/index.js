@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import solid from './modules/solid'
+import bureau from './modules/bureau'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    solid,
+    solid, bureau
   }
 })

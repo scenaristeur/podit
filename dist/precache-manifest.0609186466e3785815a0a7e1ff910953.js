@@ -4,8 +4,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/podit/404.html"
   },
   {
-    "revision": "44dbcde5ec8471f3b4c9",
-    "url": "/podit/css/app.7ff7b8b2.css"
+    "revision": "efae2aa69c27a9281219",
+    "url": "/podit/css/app.be899b47.css"
   },
   {
     "revision": "783367a29c978bd287d1",
@@ -20,7 +20,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/podit/img/logo.82b9c7a5.png"
   },
   {
-    "revision": "0d3dc9c7c7386c5acd4c3d112af071ac",
+    "revision": "13f6743adf2f6da2adb66ec1b4432df8",
     "url": "/podit/index.html"
   },
   {
@@ -28,16 +28,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/podit/js/about.b8f7a8c1.js"
   },
   {
-    "revision": "44dbcde5ec8471f3b4c9",
-    "url": "/podit/js/app.c0166838.js"
+    "revision": "efae2aa69c27a9281219",
+    "url": "/podit/js/app.8b738149.js"
   },
   {
     "revision": "783367a29c978bd287d1",
     "url": "/podit/js/chunk-20b5feb7.352cbc92.js"
   },
   {
-    "revision": "205ee58e40cfafa10f6f",
-    "url": "/podit/js/chunk-2d0e96e4.8d024090.js"
+    "revision": "3cbec98437b649579348",
+    "url": "/podit/js/chunk-2d0dd031.05fa9384.js"
+  },
+  {
+    "revision": "c5b1123b7e1a554fed35",
+    "url": "/podit/js/chunk-2d0e96e4.4835a8e1.js"
   },
   {
     "revision": "00736d6b8eb9a19d0e5a",
