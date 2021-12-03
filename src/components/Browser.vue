@@ -43,7 +43,6 @@ export default {
     'Bureau': () => import('@/components/bureau/Bureau'),
     'BrowserButton': () => import('@/components/bureau/BrowserButton'),
   },
-
   computed:{
     pod:{
       get () { return this.$store.state.solid.pod },

@@ -8,7 +8,8 @@
     <b-button
     v-if="btn != null"
     size="sm"
-    variant="primary"
+    variant="outline-primary"
+    class="mr-auto"
     @click="bureauChanged(btn)">
     {{btn.name}}
     </b-button>
@@ -31,9 +32,9 @@ export default {
   },
   async created(){
     if(this.item.storage == undefined && this.item.webId != undefined){
-      console.log("get", this.item)
+    //  console.log("get", this.item)
       let p = await this.$getPodInfos(this.item)
-      console.log(p)
+      //console.log(p)
       this.btn = p
     }else {
       this.btn = this.item

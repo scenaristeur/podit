@@ -1,6 +1,7 @@
 // import Vue from 'vue'
 const state = () => ({
   bureau: null,
+  resource: null
   //pod: null,
 })
 
@@ -13,8 +14,10 @@ const actions = {
 
 const mutations = {
   setBureau(state,b){
-
     state.bureau = b
+  },
+  setResource(state,r){
+    state.resource = r
   },
 
 }

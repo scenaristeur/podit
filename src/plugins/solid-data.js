@@ -1,63 +1,90 @@
-// import {
-//   getSolidDataset,
-//   //getThingAll,
-//   //getPublicAccess,
-//   //  getAgentAccess,
-//   //getSolidDatasetWithAcl,
-//   //getPublicAccess,
-//   //getAgentAccess,
-//   getFile,
-//   isRawData,
-//   getContentType,
-//   //saveFileInContainer,
-//   getContainedResourceUrlAll,
-//   // getStringNoLocaleAll,
-//   createContainerAt,
-//   getSourceUrl,
-//   deleteFile,
-//   //removeThing,
-//   // removeAll,
-//   //removeStringNoLocale,
-//   //deleteContainer,
-//   //addStringNoLocale,
-//   setThing,
-//   saveSolidDatasetAt,
-//   //createSolidDataset,
-//   createThing,
-//   // addUrl,
-//   buildThing,
-//   overwriteFile,
-//   // getStringNoLocale,
-//   // getThing,
-//   // getUrlAll,
-//   // getUrl,
-//   //addDatetime,
-//   //  getDatetime,
-//   //setUrl,
-//   //setStringNoLocale,
-//   //setDecimal,
-//   //setInteger,
-//   //  getDecimal,
-//   //getInteger,
-//   // setDatetime
-// } from "@inrupt/solid-client";
+import {
+  getSolidDataset,
+  //getThingAll,
+  //getPublicAccess,
+  //  getAgentAccess,
+  //getSolidDatasetWithAcl,
+  //getPublicAccess,
+  //getAgentAccess,
+  // getFile,
+  // isRawData,
+  // getContentType,
+  //saveFileInContainer,
+  getContainedResourceUrlAll,
+  // getStringNoLocaleAll,
+  // createContainerAt,
+  // getSourceUrl,
+  // deleteFile,
+  //removeThing,
+  // removeAll,
+  //removeStringNoLocale,
+  //deleteContainer,
+  //addStringNoLocale,
+  // setThing,
+  // saveSolidDatasetAt,
+  //createSolidDataset,
+  // createThing,
+  // addUrl,
+  // buildThing,
+  // overwriteFile,
+  // getStringNoLocale,
+  // getThing,
+  // getUrlAll,
+  // getUrl,
+  //addDatetime,
+  //  getDatetime,
+  //setUrl,
+  //setStringNoLocale,
+  //setDecimal,
+  //setInteger,
+  //  getDecimal,
+  //getInteger,
+  // setDatetime
+} from "@inrupt/solid-client";
 // import { /*FOAF,*/ /*LDP,*/ /*VCARD,*/ /*RDF,*/ AS,/* RDFS, OWL*/  } from "@inrupt/vocab-common-rdf";
 // import { /*WS ,*/ SOLID} from "@inrupt/vocab-solid-common";
 //
-// import * as sc from '@inrupt/solid-client-authn-browser'
+import * as sc from '@inrupt/solid-client-authn-browser'
 // import * as diffler from 'diffler'
 
 const plugin = {
   install(Vue, opts = {}) {
     let store = opts.store
-     console.log(store)
+    console.log(store)
 
-     Vue.prototype.$getStorage = async function(webId){
-       let storage = {name: webId}
+    Vue.prototype.$getResources = async function(path){
+      console.log("path", path)
+      let resources = []
+      const dataset = await getSolidDataset( path, { fetch: sc.fetch });
+      let remotesUrl  = await getContainedResourceUrlAll(dataset,{fetch: sc.fetch} )
+      console.log("remotes",remotesUrl)
 
+      resources = remotesUrl.map(function (u) {
+        let r = {url: u}
+            // file is a Blob (see https://developer.mozilla.org/docs/Web/API/Blob)
+            // const file = await getFile(
+            //   u,               // File in Pod to Read
+            //   { fetch: sc.fetch }       // fetch from authenticated session
+            // );
+            //
+            // console.log( `Fetched a ${getContentType(file)} file from ${getSourceUrl(file)}.`);
+            // console.log("The file is rawdata "+ `${isRawData(file)}`);
+        let parts = u.split('/')
+        if(u.endsWith('/')){
+                r.name = "📁 "+parts[parts.length - 2];
+                r.type = "folder"
+                //child.value = {type:'folder', url:c, text: text}
+              //  child.html= "📁"+text
+              }else{
+                r.name = parts[parts.length - 1];
+                r.type = "file"
+                //child.value = {type: "file", url:c, text: child.text}
+              }
 
-       return storage
-     }
+        return r})
+
+      return resources
+    }
     //
     // Vue.prototype.$createRemote = async function(n){
     //   console.log(store.state.solid.pod)
