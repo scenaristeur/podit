@@ -38,7 +38,7 @@ export default {
         this.resources = await this.$getResources(p.url)
         console.log(this.resources)
       }else{
-        this.$store.commit('bureau/setResource',p)
+        await this.$getResource(p)
       }
     },
     async up(){

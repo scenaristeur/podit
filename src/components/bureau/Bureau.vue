@@ -5,7 +5,8 @@
     <BrowserButton v-for="f in bureau.friends" :key="f.webid" :item="f"/>
     <Navigator :storage="bureau.storage"/>
     <hr>
-RESOURCE: {{ resource}}
+
+    <Resource />
     <hr>
     <!-- {{bureau}} -->
   </b-container>
@@ -17,6 +18,7 @@ export default {
   components: {
     'Navigator': () => import('@/components/bureau/Navigator'),
     'BrowserButton': () => import('@/components/bureau/BrowserButton'),
+    'Resource': () => import('@/components/bureau/Resource'),
   },
   computed:{
     bureau:{

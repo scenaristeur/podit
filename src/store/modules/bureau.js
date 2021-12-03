@@ -1,7 +1,8 @@
 // import Vue from 'vue'
 const state = () => ({
   bureau: null,
-  resource: null
+  resource: null,
+  content: null
   //pod: null,
 })
 
@@ -18,6 +19,9 @@ const mutations = {
   },
   setResource(state,r){
     state.resource = r
+  },
+  setContent(state,c){
+    state.content = c
   },
 
 }

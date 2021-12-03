@@ -6,14 +6,14 @@ import {
   //getSolidDatasetWithAcl,
   //getPublicAccess,
   //getAgentAccess,
-  // getFile,
-  // isRawData,
-  // getContentType,
+  getFile,
+  isRawData,
+  getContentType,
   //saveFileInContainer,
   getContainedResourceUrlAll,
   // getStringNoLocaleAll,
   // createContainerAt,
-  // getSourceUrl,
+  getSourceUrl,
   // deleteFile,
   //removeThing,
   // removeAll,
@@ -61,14 +61,7 @@ const plugin = {
 
       resources = remotesUrl.map(function (u) {
         let r = {url: u}
-            // file is a Blob (see https://developer.mozilla.org/docs/Web/API/Blob)
-            // const file = await getFile(
-            //   u,               // File in Pod to Read
-            //   { fetch: sc.fetch }       // fetch from authenticated session
-            // );
-            //
-            // console.log( `Fetched a ${getContentType(file)} file from ${getSourceUrl(file)}.`);
-            // console.log("The file is rawdata "+ `${isRawData(file)}`);
+
         let parts = u.split('/')
         if(u.endsWith('/')){
                 r.name = "📁 "+parts[parts.length - 2];
@@ -84,6 +77,22 @@ const plugin = {
         return r})
 
       return resources
+    }
+
+    Vue.prototype.$getResource = async function(r){
+      //file is a Blob (see https://developer.mozilla.org/docs/Web/API/Blob)
+      const file = await getFile(
+        r.url,               // File in Pod to Read
+        { fetch: sc.fetch }       // fetch from authenticated session
+      );
+
+      console.log( `Fetched a ${getContentType(file)} file from ${getSourceUrl(file)}.`);
+      console.log("The file is rawdata "+ `${isRawData(file)}`);
+      r.file = file
+
+    //  return r
+      this.$store.commit('bureau/setResource',r)
+      this.$getContent(r.url)
     }
     //
     // Vue.prototype.$createRemote = async function(n){
@@ -268,47 +277,47 @@ const plugin = {
     //   }
     //
     // }
-    // Vue.prototype.$getContent = async function(url){
-    //   console.log(url)
-    //   try {
-    //     // file is a Blob (see https://developer.mozilla.org/docs/Web/API/Blob)
-    //     const file = await getFile(
-    //       url,               // File in Pod to Read
-    //       { fetch: sc.fetch }       // fetch from authenticated session
-    //     );
-    //
-    //     console.log( `Fetched a ${getContentType(file)} file from ${getSourceUrl(file)}.`);
-    //     console.log("The file is rawdata "+ `${isRawData(file)}`);
-    //
-    //      if(`${getContentType(file)}` == 'text/html' /*|| `${getContentType(file)}` == "application/ld+json"*/)  {
-    //       const reader = new FileReader();
-    //       reader.onload = async () => {
-    //         //  console.log(reader.result)
-    //         let content = reader.result
-    //         // if (getContentType(file) == 'application+json'){
-    //         //   content = JSON.parse(reader.result);
-    //         // }
-    //       //  console.log("content",content)
-    //         store.commit('nodes/setEditorContent',content)
-    //       };
-    //       reader.onerror = (error) => {
-    //         console.log(error);
-    //       };
-    //       reader.readAsText(file);
-    //     }
-    //     else{
-    //       console.log("is a dataset")
-    //       alert ("i can't read '"+file.url +"' as text or html, use another editor"  )
-    //     }
-    //
-    //
-    //
-    //
-    //     return file
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
+    Vue.prototype.$getContent = async function(url){
+      console.log("get content de ",url)
+      try {
+        // file is a Blob (see https://developer.mozilla.org/docs/Web/API/Blob)
+        const file = await getFile(
+          url,               // File in Pod to Read
+          { fetch: sc.fetch }       // fetch from authenticated session
+        );
+
+        // console.log( `Fetched a ${getContentType(file)} file from ${getSourceUrl(file)}.`);
+        // console.log("The file is rawdata "+ `${isRawData(file)}`);
+
+         //if(`${getContentType(file)}` == 'text/html' /*|| `${getContentType(file)}` == "application/ld+json"*/)  {
+          const reader = new FileReader();
+          reader.onload = async () => {
+            //  console.log(reader.result)
+            let content = reader.result
+            // if (getContentType(file) == 'application+json'){
+            //   content = JSON.parse(reader.result);
+            // }
+           console.log("content",content)
+            store.commit('bureau/setContent',content)
+          };
+          reader.onerror = (error) => {
+            console.log(error);
+          };
+          reader.readAsText(file);
+      //  }
+        // else{
+        //   console.log("is a dataset")
+        //   alert ("i can't read '"+file.url +"' as text or html, use another editor"  )
+        // }
+
+
+
+
+      //  return file
+      } catch (err) {
+        console.log(err);
+      }
+    }
     //
     // Vue.prototype.$addWorkspaceToPod = async function(s){
     //   console.log(s, )
