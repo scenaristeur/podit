@@ -48,7 +48,7 @@ export default {
     <body>
     ${this.editorData}
     </body>
-    </html
+    </html>
     `
     //file.content +=
     console.log(this.resource)

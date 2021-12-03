@@ -12,7 +12,7 @@ import {
   //saveFileInContainer,
   getContainedResourceUrlAll,
   // getStringNoLocaleAll,
-  // createContainerAt,
+  createContainerAt,
   getSourceUrl,
   // deleteFile,
   //removeThing,
@@ -348,6 +348,10 @@ const plugin = {
       } catch (err) {
         console.log(err);
       }
+    }
+
+    Vue.prototype.$createFolder = async function(f){
+      await createContainerAt( f, { fetch: sc.fetch });
     }
     //
     // Vue.prototype.$addWorkspaceToPod = async function(s){

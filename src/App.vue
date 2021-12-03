@@ -6,6 +6,7 @@
     </div>
     <router-view/>
     {{session}}
+
   </div>
 </template>
 <script>

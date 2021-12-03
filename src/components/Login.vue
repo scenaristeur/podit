@@ -53,7 +53,7 @@ restore session
 
 <div v-else class="d-flex align-items-center">
   <b-button @click="logout" variant="outline-danger" size="sm">Logout</b-button>
-
+  <b-button :href="session.webId" target="_blank" variant="danger" class="btn" size="sm">Logout from Pod</b-button>
 </div>
 
 </span>

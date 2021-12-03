@@ -1,7 +1,14 @@
-<template>
+un<template>
   <b-container>
     Nav : <b-button variant="primary" @click="init">{{storage}}</b-button>
     <b-button v-if="current != null" variant="primary" @click="up">up</b-button>
+    <b-button size="sm" variant="outline-info"  @click.stop="addFolder(r)" style="float:left">
+      <b-icon-folder-plus @click.stop="addFolder()" variant="info" ></b-icon-folder-plus>
+    </b-button>
+    <b-button size="sm" variant="outline-info"  @click.stop="addFile()" style="float:left">
+      <b-icon-file-plus @click.stop="addFile()" variant="info" ></b-icon-file-plus>
+    </b-button>
+
     <hr>
 
     <b-list-group>
@@ -21,7 +28,7 @@
         <button class="btn btn-default" type="button"><span>ᐅ</span> Go!</button>
       </span> -->
 
-      <span style="display: table-cell; width: 75px;">
+      <span style="display: table-cell; width: 155px;">
         <!-- <button class="btn btn-default" type="button"><span>ᐅ</span>  Go!</button> -->
         <!-- class="unstyled-button" -->
 
@@ -29,6 +36,12 @@
           <b-icon-clipboard @click.stop="copy(r)" variant="info" ></b-icon-clipboard>
         </b-button>
         <Share :item="r" style="float:left"/>
+        <b-button size="sm" variant="outline-info"  @click.stop="move(r)" style="float:left">
+          <b-icon-file-plus @click.stop="move(r)" variant="info" ></b-icon-file-plus>
+        </b-button>
+        <b-button size="sm" variant="outline-info"  @click.stop="trash(r)" style="float:left">
+          <b-icon-trash @click.stop="trash(r)" variant="info" ></b-icon-trash>
+        </b-button>
       </span>
 
     </div>
@@ -70,6 +83,9 @@ export default {
     async up(){
       console.log(this.current)
       let url = this.current.url
+      if(url.endsWith('/')){
+        url.substring(0, url.length - 1);
+      }
       let url_s = url.split('/')
       console.log(url_s)
       let l = url_s.pop()
@@ -77,7 +93,7 @@ export default {
       if (l.length == 0){
         url_s.pop()
       }
-      console.log(url_s)
+      console.log(l,url_s)
       let u = url_s.join('/')
       this.current = {url: u}
       this.resources = await this.$getResources(u)
@@ -90,25 +106,54 @@ export default {
     },
     async init(){
       console.log(this.storage)
-      this.current = null
+      this.current = this.storage
       this.resources = await this.$getResources(this.storage)
     },
     copy(r){
       console.log(r)
       navigator.clipboard.writeText(r.url);
-
-/* Alert the copied text */
-alert("Copied the url: " + r.url);
-    }
-  },
-  watch:{
-    async storage(){
-      this.init()
+      alert("Copied the url: " + r.url);
+    },
+    async addFolder(){
+      console.log(this.current)
+      var folder = prompt("Folder Name");
+      if (folder != null && folder.length > 0) {
+        console.log(folder)
+        await this.$createFolder(this.current.url+folder.trim())
+        this.resources = await this.$getResources(this.current.url)
+      }
+    },
+    async addFile(){
+      console.log(this.current)
+      var name = prompt("HTML FILENAME");
+      //name = name.trim()
+      if (name != null && name.length > 0) {
+        console.log(name)
+        let filename = name.endsWith('.html') ? name : name+'.html'
+        let url = this.current.url+filename
+        let file = {name: name, url: url ,
+          file: {type: 'text/html'},
+          content: "<h1>"+filename+"</h1><small> <br> created : "+Date.now()+"</small><br> with <a href='https://scennaristeur.github.io/podit' target='_blank'>PodIt</a>"}
+          let fileSaved = await this.$updateFile(file)
+          console.log(fileSaved)
+          this.resources = await this.$getResources(this.current.url)
+        }
+      },
+      move(r){
+        console.log('must move',r)
+      },
+      trash(r){
+        console.log("must trash", r)
+      }
+    },
+    watch:{
+      async storage(){
+        this.init()
+      }
     }
   }
-}
-</script>
+  </script>
 
-<style>
+  <style>
 
-</style>
+  </style>
