@@ -51,6 +51,13 @@ const plugin = {
   install(Vue, opts = {}) {
     let store = opts.store
      console.log(store)
+
+     Vue.prototype.$getStorage = async function(webId){
+       let storage = {name: webId}
+
+
+       return storage
+     }
     //
     // Vue.prototype.$createRemote = async function(n){
     //   console.log(store.state.solid.pod)

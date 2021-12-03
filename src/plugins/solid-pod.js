@@ -133,7 +133,7 @@ const plugin = {
             console.log(i)
             let ws = {}
             ws.name =  await getStringNoLocale(i, AS.name)
-            ws.url = await getUrl(i,SOLID.instance)
+            ws.storage = await getUrl(i,SOLID.instance)
             pod.workspaces.push(ws)
           }
         }
