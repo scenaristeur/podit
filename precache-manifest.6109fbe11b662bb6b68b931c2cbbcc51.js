@@ -4,8 +4,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/podit/404.html"
   },
   {
-    "revision": "bc2033937ae70dbf4951",
-    "url": "/podit/css/app.be899b47.css"
+    "revision": "b5331356ee27ae826ad7",
+    "url": "/podit/css/app.4345fd7b.css"
   },
   {
     "revision": "3cd5315d9d58609099ed",
@@ -16,11 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/podit/css/chunk-vendors.8bda0bd5.css"
   },
   {
-    "revision": "82b9c7a5a3f405032b1db71a25f67021",
-    "url": "/podit/img/logo.82b9c7a5.png"
-  },
-  {
-    "revision": "72555d4aa995350f5f454ceef6cd4caf",
+    "revision": "9fc46f0d29ac9795c16c5ed32be79ad3",
     "url": "/podit/index.html"
   },
   {
@@ -28,40 +24,40 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/podit/js/about.708aab9d.js"
   },
   {
-    "revision": "bc2033937ae70dbf4951",
-    "url": "/podit/js/app.bcb5d38b.js"
+    "revision": "b5331356ee27ae826ad7",
+    "url": "/podit/js/app.437b113a.js"
   },
   {
     "revision": "3cd5315d9d58609099ed",
     "url": "/podit/js/chunk-20b5feb7.6d904782.js"
   },
   {
-    "revision": "bd2998550bf343c05bcd",
-    "url": "/podit/js/chunk-2d0aa17c.6d6da930.js"
+    "revision": "472d041b9222dad980ea",
+    "url": "/podit/js/chunk-2d0aa17c.10d4eeb1.js"
   },
   {
-    "revision": "5771212ff57b63896ca7",
-    "url": "/podit/js/chunk-2d0c13e4.460a5ab3.js"
+    "revision": "466372ea9e1b21705362",
+    "url": "/podit/js/chunk-2d0c13e4.4322dcf9.js"
   },
   {
-    "revision": "3fb76d1ba088996497f5",
-    "url": "/podit/js/chunk-2d0dd031.18ebeae8.js"
+    "revision": "fd86577ef6e163e67a9b",
+    "url": "/podit/js/chunk-2d0dd031.0ac75fb8.js"
   },
   {
     "revision": "9afec5b797ce663f3e8a",
     "url": "/podit/js/chunk-2d0e5f33.4ab1dbb6.js"
   },
   {
-    "revision": "07218ec0e5ece3951a07",
-    "url": "/podit/js/chunk-2d0e96e4.20800161.js"
-  },
-  {
-    "revision": "346ae2acb674235f7932",
-    "url": "/podit/js/chunk-2d970383.c1bca2be.js"
+    "revision": "d792a16fd06949398e36",
+    "url": "/podit/js/chunk-2d0e96e4.a89c5e2f.js"
   },
   {
     "revision": "9ff1dc5a94bac5b00cfe",
     "url": "/podit/js/chunk-69d49705.b54c9251.js"
+  },
+  {
+    "revision": "52707ed206605a23f07a",
+    "url": "/podit/js/chunk-876f783a.91496a54.js"
   },
   {
     "revision": "00736d6b8eb9a19d0e5a",
