@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/podit/precache-manifest.acf79e914f8b0609bac49c9a135401e0.js"
+  "/podit/precache-manifest.9904fe436c6bb03d037e5d70aacbfdce.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "podit"});
