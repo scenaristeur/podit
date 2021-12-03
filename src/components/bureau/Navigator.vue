@@ -28,7 +28,7 @@ un<template>
         <button class="btn btn-default" type="button"><span>ᐅ</span> Go!</button>
       </span> -->
 
-      <span style="display: table-cell; width: 155px;">
+      <span style="display: table-cell; width: 145px;">
         <!-- <button class="btn btn-default" type="button"><span>ᐅ</span>  Go!</button> -->
         <!-- class="unstyled-button" -->
 
@@ -36,11 +36,11 @@ un<template>
           <b-icon-clipboard @click.stop="copy(r)" variant="info" ></b-icon-clipboard>
         </b-button>
         <Share :item="r" style="float:left"/>
-        <b-button size="sm" variant="outline-info"  @click.stop="move(r)" style="float:left">
-          <b-icon-file-plus @click.stop="move(r)" variant="info" ></b-icon-file-plus>
+        <b-button size="sm" variant="outline-warning"  @click.stop="move(r)" style="float:left">
+          <b-icon-file-plus @click.stop="move(r)" variant="warning" ></b-icon-file-plus>
         </b-button>
-        <b-button size="sm" variant="outline-info"  @click.stop="trash(r)" style="float:left">
-          <b-icon-trash @click.stop="trash(r)" variant="info" ></b-icon-trash>
+        <b-button size="sm" variant="outline-danger"  @click.stop="trash(r)" style="float:left">
+          <b-icon-trash @click.stop="trash(r)" variant="danger" ></b-icon-trash>
         </b-button>
       </span>
 
