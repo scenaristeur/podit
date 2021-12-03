@@ -1,16 +1,21 @@
 <template>
   <div v-if="resource != null">
-    name: {{resource.name}}<br>
-    url: <a :href="resource.url" target="_blank">{{resource.url}}</a><br>
-    contenttype: {{resource.file.internal_resourceInfo.contentType}} /
-    rawdata : {{resource.file.internal_resourceInfo.isRawData}}<br>
-    permissions : {{resource.file.internal_resourceInfo.permissions}}
-    <hr>
+
     <CKWysiwyg v-if="resource.file.internal_resourceInfo.contentType =='text/html'" />
     <div v-else>
       Content : {{content}}
       <hr>
       {{resource}}
+    </div>
+
+    <div>
+      <hr>
+      name: {{resource.name}}<br>
+      url: <a :href="resource.url" target="_blank">{{resource.url}}</a><br>
+      contenttype: {{resource.file.internal_resourceInfo.contentType}} /
+      rawdata : {{resource.file.internal_resourceInfo.isRawData}}<br>
+      permissions : {{resource.file.internal_resourceInfo.permissions}}
+
     </div>
     <!-- <hr>
     {{r}} -->

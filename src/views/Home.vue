@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Login />
+    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    <Login /><br>
     <Browser />
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Welcome to Podit"/>
   </div>
 </template>
 

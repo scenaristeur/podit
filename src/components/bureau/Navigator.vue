@@ -101,7 +101,7 @@ export default {
       //   url.substring(0, url.length - 1);
       // }
       // console.log(url)
-      // let parent = url.slice(0, url.lastIndexOf('/'))+'/';
+      // ';
       // console.log("parent",parent)
     },
     async init(){
@@ -119,8 +119,9 @@ export default {
       var folder = prompt("Folder Name");
       if (folder != null && folder.length > 0) {
         console.log(folder)
-        await this.$createFolder(this.current.url+folder.trim())
-        this.resources = await this.$getResources(this.current.url)
+        let parent = this.current.url.slice(0, this.current.url.lastIndexOf('/'))+'/'
+        await this.$createFolder(parent+folder.trim())
+        this.resources = await this.$getResources(parent)
       }
     },
     async addFile(){
@@ -130,13 +131,16 @@ export default {
       if (name != null && name.length > 0) {
         console.log(name)
         let filename = name.endsWith('.html') ? name : name+'.html'
-        let url = this.current.url+filename
+
+        let parent = this.current.url.slice(0, this.current.url.lastIndexOf('/'))+'/'
+        console.log(parent)
+        let url = parent+filename
         let file = {name: name, url: url ,
           file: {type: 'text/html'},
           content: "<h1>"+filename+"</h1><small> <br> created : "+Date.now()+"</small><br> with <a href='https://scennaristeur.github.io/podit' target='_blank'>PodIt</a>"}
           let fileSaved = await this.$updateFile(file)
           console.log(fileSaved)
-          this.resources = await this.$getResources(this.current.url)
+          this.resources = await this.$getResources(parent)
         }
       },
       move(r){

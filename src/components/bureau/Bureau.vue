@@ -1,6 +1,7 @@
 <template>
   <b-container v-if="bureau != null">
-    <h1>Bureau</h1>
+    <hr>
+    <!-- <h1>Bureau</h1> -->
     <h3>{{bureau.name}}</h3>
     <BrowserButton v-for="f in bureau.friends" :key="f.webid" :item="f"/>
     <Navigator :storage="bureau.storage"/>

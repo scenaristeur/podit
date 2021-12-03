@@ -132,7 +132,9 @@ export default {
         // })
         // .then(json => {
         //   console.log(json)
-          this.sharing.url = this.it.url != undefined ? 'https://scenaristeur.github.io/podit/?url='+this.it.url : "https://scenaristeur.github.io/podit"
+          //this.sharing.url = this.it.url != undefined ? 'https://scenaristeur.github.io/podit/?url='+this.it.url : "https://scenaristeur.github.io/podit"
+          this.sharing.url = this.it.url // != undefined ? 'https://scenaristeur.github.io/podit/?url='+this.it.url : "https://scenaristeur.github.io/podit"
+
           this.sharing.description = 'Check out this podit :'+this.it.name
           //  this.sharing.title = 'IPGS',
           //  text: 'Check out this IPGS graph.',
